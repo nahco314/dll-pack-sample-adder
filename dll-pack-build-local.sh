@@ -1,3 +1,5 @@
+rustup target add ${DLL_PACK_TARGET}
+
 cd deps/add_one
 cargo build --profile release
 cargo build --profile release --target ${DLL_PACK_TARGET}
