@@ -28,12 +28,10 @@ jobs:
       - name: Install dll-pack-builder
         run: pip install git+https://github.com/nahco314/dll-pack-builder
       - name: Build artifacts
-        run: cargo build --profile release --target ${{ matrix.target }}
-      - name: Post-build
         env:
           DLL_PACK_TARGET: ${{ matrix.target }}
           BUILD_OUT_DIR: ./target/${{ matrix.target }}/release
-        run: bash ./post_build_local.sh
+        run: bash ./dll-pack-build-local.sh
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -57,7 +55,7 @@ jobs:
           path: artifacts
           merge-multiple: true
       - name: Build artifacts
-        run: bash ./post_build_global.sh
+        run: bash ./dll-pack-build-global.sh
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
